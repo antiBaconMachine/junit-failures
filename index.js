@@ -34,7 +34,7 @@ module.exports = function(cb, dir, throwOnIssue) {
     walker.on("end", function() {
         //console.log("end");
        cb(null, failures);
-       if (throwOnIssue) {
+       if (throwOnIssue && failures) {
            throw failures + " test failures";
        }
     });
