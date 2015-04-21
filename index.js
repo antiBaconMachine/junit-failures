@@ -3,10 +3,11 @@ var path = require("path"),
     parse = require('xml-parser'),
     walk = require("walk");
 
-module.exports = function(cb, dir) {
+module.exports = function(cb, dir, throwOnIssue) {
+
     var dirname = path.resolve(process.cwd(), (dir || "test-reports"));
 
-    //console.log("start", arguments, dirname);
+    console.log("start", arguments, dirname);
     var walker = walk.walk(dirname),
         failures = 0;
 
@@ -20,7 +21,11 @@ module.exports = function(cb, dir) {
                     failures += (1 * obj.root.attributes.failures);
                     next();
                 } else {
-                    cb("Could not read xml");
+                    var issue = "Could not read xml";
+                    cb(issue);
+                    if (throwOnIssue) {
+                        throw issue;
+                    }
                 }
             });
         }
@@ -29,5 +34,8 @@ module.exports = function(cb, dir) {
     walker.on("end", function() {
         //console.log("end");
        cb(null, failures);
+       if (throwOnIssue) {
+           throw failures + " test failures";
+       }
     });
 }
