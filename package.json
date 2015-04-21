@@ -1,0 +1,24 @@
+{
+  "name": "junit-failures",
+  "version": "0.0.0",
+  "description": "Parses junit xml and reports failures. Useful with xcodebuild which always returns 0 exit code even for failures.",
+  "main": "index.js",
+  "scripts": {
+    "start": "./cli.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antiBaconMachine/junit-failures.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antiBaconMachine/junit-failures/issues"
+  },
+  "homepage": "https://github.com/antiBaconMachine/junit-failures",
+  "dependencies": {
+    "promise": "^7.0.0",
+    "walk": "^2.3.9",
+    "xml-parser": "^1.2.0"
+  }
+}
